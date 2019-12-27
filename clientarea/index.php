@@ -1,4 +1,7 @@
-
+<?php 
+require_once("../config/db.php");
+session_start();
+?>
 
 <html lang="en">
 <head>
@@ -37,23 +40,23 @@
 			<div class="col-sm-12">
 				<div class="row">
     				<div class="col-sm-6 form-group"> Name :
-    					<input name="nom" type="text" class="form-control" id="nom" required placeholder="Entrer le nom de l'enseignant" title="Nom">
+    					<input name="name" type="text" class="form-control" id="name" required placeholder="<?php echo $_SESSION['name']; ?>" title="Nom">
     				</div>
     				<div class="col-sm-6 form-group">Numero tel :
-    					<input name="num" type="text" class="form-control" id="num" required  placeholder="Entrer le numéro de téléphone"  title="Numero de telephone">
+    					<input name="num" type="text" class="form-control" id="num" required  placeholder="<?php echo $_SESSION['number']; ?>"  title="Numero de telephone">
     				</div>
 					<div class="col-sm-6 form-group">First Name :
-    					<input name="prenom" type="text" class="form-control" id="prenom"  required placeholder="Entrer le prénom de l'enseignant" title="Prénom">
+    					<input name="prenom" type="text" class="form-control" id="prenom"  required placeholder="<?php echo $_SESSION['fname']; ?>" title="Prénom">
     				</div>
     				<div class="col-sm-6 form-group">Fidelity Points :    			
-                        <input name="domA" type="text" class="form-control" id="domA"  required placeholder="Entrer le domaine de l'enseignant" title="Domaine de travail">
+                        <input name="domA" type="text" class="form-control" id="domA"  readonly placeholder="<?php echo $_SESSION['points']; ?>" title="Domaine de travail">
     				</div>
 					<div class="col-sm-6 form-group">E-mail :
-    					<input name="email" type="text" class="form-control" id="email"  required placeholder="Entrer le pseudo" title="Email">
+    					<input name="email" type="text" class="form-control" id="email"  required placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
     				</div>
     						
 					<div class="col-sm-6 form-group">Password :
-    					<input name="password" type="text" class="form-control" id="password"  required placeholder="Entrer le mot de passe.." title="Mot de passe">
+    					<input name="password" type="text" class="form-control" id="password"  required placeholder="Enter New Password" title="Mot de passe">
 					</div>		
 	             </div>
 							

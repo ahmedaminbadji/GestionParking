@@ -13,11 +13,23 @@
     //});
 //});
 $( document ).ready(function() {
+  var a = window.location.href;
+ 
+if(a.localeCompare(homeUrl) || a.localeCompare(homeUrl2) ){
+var cid = "#dashboard";
+$('#slider').html($(cid).html());
+  var homeUrl = 'http://localhost/parkManager/admin/';
+  var homeUrl2 = 'http://localhost/parkManager/admin/index.php';
   var content_id =  "#"+window.location.href.replace(/^.*#/, "");
-  var contentdiv = $(content_id).html();
+  
+    var contentdiv = $(content_id).html();
 
       $('#slider').html(contentdiv);
+
      
+  }
+      
+    
 });
 $(function () {
   $(".clicky").click(function () {

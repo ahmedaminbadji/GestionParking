@@ -11,6 +11,7 @@ $(function(){
                     window.alert("admin logged");
                 }else if(data == "logged client"){
                     window.alert("client logged");
+                    window.location.href = "/parkManager/clientarea/";
 
                 }else{
                     $("#login_message").text("Invalid Username or password !");
