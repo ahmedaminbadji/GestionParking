@@ -36,27 +36,27 @@ session_start();
 	<div class="col-lg-12 well">
 	<div class="row">
 	<div align='center'><h3>Profile</h3></div><br>
-		<form  action action="" method="post"> 
+		<form action="editprofile.php" method="post"> 
 			<div class="col-sm-12">
 				<div class="row">
     				<div class="col-sm-6 form-group"> Name :
-    					<input name="name" type="text" class="form-control" id="name" required placeholder="<?php echo $_SESSION['name']; ?>" title="Nom">
+    					<input name="name" type="text" class="form-control" id="name"  placeholder="<?php echo $_SESSION['name']; ?>" title="Nom">
     				</div>
     				<div class="col-sm-6 form-group">Numero tel :
-    					<input name="num" type="text" class="form-control" id="num" required  placeholder="<?php echo $_SESSION['number']; ?>"  title="Numero de telephone">
+    					<input name="num" type="text" class="form-control" id="num"   placeholder="<?php echo $_SESSION['number']; ?>"  title="Numero de telephone">
     				</div>
 					<div class="col-sm-6 form-group">First Name :
-    					<input name="prenom" type="text" class="form-control" id="prenom"  required placeholder="<?php echo $_SESSION['fname']; ?>" title="Prénom">
+    					<input name="fname" type="text" class="form-control" id="fname"   placeholder="<?php echo $_SESSION['fname']; ?>" title="Prénom">
     				</div>
     				<div class="col-sm-6 form-group">Fidelity Points :    			
-                        <input name="domA" type="text" class="form-control" id="domA"  readonly placeholder="<?php echo $_SESSION['points']; ?>" title="Domaine de travail">
+                        <input name="points" type="text" class="form-control" id="points"  readonly placeholder="<?php echo $_SESSION['points']; ?>" title="Domaine de travail">
     				</div>
 					<div class="col-sm-6 form-group">E-mail :
-    					<input name="email" type="text" class="form-control" id="email"  required placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
+    					<input name="email" type="text" class="form-control" id="email"   placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
     				</div>
     						
 					<div class="col-sm-6 form-group">Password :
-    					<input name="password" type="text" class="form-control" id="password"  required placeholder="Enter New Password" title="Mot de passe">
+    					<input name="password" type="text" class="form-control" id="password"   placeholder="Enter New Password" title="Mot de passe">
 					</div>		
 	             </div>
 							

@@ -24,6 +24,7 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['sel1'
         $n = mysqli_num_rows($result);
         if($n>0){
             $row= mysqli_fetch_assoc($result);
+            $_SESSION['id']=$row['id'];
             $_SESSION['role']="client";
             $_SESSION['user']=$user;
             $_SESSION['name']=$row['Name'];
