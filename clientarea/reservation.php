@@ -25,8 +25,8 @@ if(isset($_SESSION['user'])){
       <a class="navbar-brand" href="#">Dashboard</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Profile</a></li>
-      <li ><a href="reservation.php">Reservation</a></li>
+      <li ><a href="index.php">Profile</a></li>
+      <li class="active"><a href="reservation.php">Reservation</a></li>
       <li ><a href="#">Historique de reservations</a></li>
       
     </ul>
@@ -45,28 +45,29 @@ if(isset($_SESSION['user'])){
   
 	<div class="col-lg-12 well">
 	<div class="row">
-	<div align='center'><h3>Profile</h3></div><br>
+	<div align='center'><h3>Reserver</h3></div><br>
 		<form action="editprofile.php" method="post"> 
 			<div class="col-sm-12">
 				<div class="row">
-    				<div class="col-sm-6 form-group"> Name :
-    					<input name="name" type="text" class="form-control" id="name"  placeholder="<?php echo $_SESSION['name']; ?>" title="Nom">
+    				<div class="col-sm-6 form-group"> Car Brand :
+    					<input name="carName" type="text" class="form-control" id="carName"  placeholder="Exemple : Renault .." title="brand">
     				</div>
-    				<div class="col-sm-6 form-group">Numero tel :
-    					<input name="num" type="text" class="form-control" id="num"   placeholder="<?php echo $_SESSION['number']; ?>"  title="Numero de telephone">
+    				<div class="col-sm-6 form-group"> Car Model :
+    					<input name="carModel" type="text" class="form-control" id="carModel"   placeholder="Exemple : Symbole .."  title="model">
     				</div>
-					<div class="col-sm-6 form-group">First Name :
-    					<input name="fname" type="text" class="form-control" id="fname"   placeholder="<?php echo $_SESSION['fname']; ?>" title="Prénom">
+					<div class="col-sm-6 form-group">Immatriculation :
+    					<input name="mat" type="text" class="form-control" id="mat"   placeholder="Exemple : 24-116-94563" title="Matricule">
     				</div>
     				<div class="col-sm-6 form-group">Fidelity Points :    			
                         <input name="points" type="text" class="form-control" id="points"  readonly placeholder="<?php echo $_SESSION['points']; ?>" title="Domaine de travail">
-    				</div>
-					<div class="col-sm-6 form-group">E-mail :
+                       <label for="usePoints">use points : </label> <input type="checkbox" name="usePoints" id="usePoints" >
+                    </div>
+					<div class="col-sm-6 form-group">Horraire :
     					<input name="email" type="text" class="form-control" id="email"   placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
     				</div>
     						
-					<div class="col-sm-6 form-group">Password :
-    					<input name="password" type="text" class="form-control" id="password"   placeholder="Enter New Password" title="Mot de passe">
+					<div class="col-sm-6 form-group">duration :
+    					<input name="password" type="number" class="form-control" id="duration"   placeholder="Enter duration in Min" title="Duration">
 					</div>		
 	             </div>
 							
@@ -76,7 +77,7 @@ if(isset($_SESSION['user'])){
 
   <!-- Boutton -->                                        
                                     <div class="col-md-offset-3 col-md-6" style=" margin-top:20px;">
-                                        <button name="creer"   type="submit" class="btn btn-success btn-sm"></i>Edit Profile</button>
+                                        <button name="creer"   type="submit" class="btn btn-success btn-sm"></i>Pay</button>
                                        
 					
                                 </div>					</div></div>
