@@ -2,7 +2,8 @@
 require_once("../config/db.php");
 session_start();
 if(isset($_SESSION['user'])){
-
+	$date = date('Y-m-d', time());
+	
 
 ?>
 
@@ -14,11 +15,11 @@ if(isset($_SESSION['user'])){
     <title>Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
    
-  
+	
 </head>
 <body>
    
-        
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -27,6 +28,7 @@ if(isset($_SESSION['user'])){
     <ul class="nav navbar-nav">
       <li ><a href="index.php">Profile</a></li>
       <li class="active"><a href="reservation.php">Reservation</a></li>
+	  <li><a href="">Reservation en cours</a></li>
       <li ><a href="#">Historique de reservations</a></li>
       
     </ul>
@@ -46,7 +48,7 @@ if(isset($_SESSION['user'])){
 	<div class="col-lg-12 well">
 	<div class="row">
 	<div align='center'><h3>Reserver</h3></div><br>
-		<form action="editprofile.php" method="post"> 
+		<form action="#" method="post"> 
 			<div class="col-sm-12">
 				<div class="row">
     				<div class="col-sm-6 form-group"> Car Brand :
@@ -62,13 +64,19 @@ if(isset($_SESSION['user'])){
                         <input name="points" type="text" class="form-control" id="points"  readonly placeholder="<?php echo $_SESSION['points']; ?>" title="Domaine de travail">
                        <label for="usePoints">use points : </label> <input type="checkbox" name="usePoints" id="usePoints" >
                     </div>
-					<div class="col-sm-6 form-group">Horraire :
-    					<input name="email" type="text" class="form-control" id="email"   placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
+					<div class="col-sm-6 form-group">Date :
+    					<input name="date" type="date" min="<?php echo $date;?>" class="form-control" id="dateof"   placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
     				</div>
+					<div class="col-sm-6 form-group">Heure d'arrivée :
+    					<input name="horraire" type="time"  id="horraire"  class="form-control" placeholder="<?php echo $_SESSION['email']; ?>" title="Email">
+    				</div>
+					<div class="col-sm-offset-4 col-sm-4 form-group">
+						<select class="form-control" name="select1" id="select1">
+						
+						</select>
+					</div>
     						
-					<div class="col-sm-6 form-group">duration :
-    					<input name="password" type="number" class="form-control" id="duration"   placeholder="Enter duration in Min" title="Duration">
-					</div>		
+						
 	             </div>
 							
 	<div align='center'>
@@ -91,8 +99,40 @@ if(isset($_SESSION['user'])){
   
     </div>
 </div>
+<script type="text/javascript" language="javascript" src="../static/js/jquery.js"></script>
+<script>
+	$(function(){
+$("#dateof, #horraire").change(function(){
+		
+        var val1 = $("#dateof").val();
+		var val2 = $("#horraire").val();
+		if(val1 !== "" && val2!=="" ){
+			var result= [];
+		var sel = document.getElementById('select1');
+        $.post("checkav.php",{val1: val1,val2: val2})
+            .done(function(data){
+               
+				result = eval(data);
+				
+				.remove(j);
+				//	}
+				$('#select1').empty();
+				for(var i=0;i<result.length;i++){
+	
+				var opt = document.createElement('option');
+				opt.innerHTML = result[i];
+				opt.value = result[i];
+				sel.appendChild(opt);
+				
+			}
+			});
+		}
+		
+			
+	  });
+	});
 
-
+</script>
 
 </body>
 </html>
