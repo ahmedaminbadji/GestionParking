@@ -27,7 +27,7 @@ if(isset($_SESSION['user'])){
     <ul class="nav navbar-nav">
       <li class="active"><a href="index.php">Profile</a></li>
       <li ><a href="reservation.php">Reservation</a></li>
-	  <li><a href="">Reservation en cours</a></li>
+	  <li><a href="encours.php">Reservation en cours</a></li>
       <li ><a href="#">Historique de reservations</a></li>
       
     </ul>
