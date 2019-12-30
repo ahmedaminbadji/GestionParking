@@ -48,7 +48,7 @@ if(isset($_SESSION['user'])){
 	<div class="col-lg-12 well">
 	<div class="row">
 	<div align='center'><h3>Reserver</h3></div><br>
-		<form action="process.php" method="post"> 
+		<form action="process/process.php" method="post"> 
 			<div class="col-sm-12">
 				<div class="row">
     				<div class="col-sm-6 form-group"> Car Brand :
@@ -103,7 +103,7 @@ if(isset($_SESSION['user'])){
 <script>
 	$(function(){
 $("#dateof, #horraire").change(function(){
-	
+		
 		var val1 = $("#dateof").val();
 		var val2 = $("#horraire").val();
 	
@@ -111,7 +111,7 @@ $("#dateof, #horraire").change(function(){
 			var result= [];
 			
 		var sel = document.getElementById('select1');
-        $.post("checkav.php",{val1: val1,val2: val2})
+        $.post("process/checkav.php",{val1: val1,val2: val2})
            .done(function(data){
 			
 			

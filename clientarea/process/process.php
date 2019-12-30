@@ -1,5 +1,5 @@
 <?php 
-include("../config/db.php");
+include("../../config/db.php");
 session_start();
 if(!empty($_POST['carName']) && !empty($_POST['carModel']) && !empty($_POST['mat']) && !empty($_POST['dateof']) && !empty($_POST['horraire'])){
 $id = $_SESSION['id'];
@@ -28,13 +28,16 @@ if(!empty($_POST['usePoints'])){
 
 $query2 = "INSERT INTO reserved (username,carBrand,carModel,immatriculation,heurreA,dateReserved,slot) VALUES('$user','$carName','$carModel','$mat','$horraire','$dateof','$slot')";
 mysqli_query($con,$query2);
+$query4 = "UPDATE parkingSlots SET reserved = 1 WHERE id = '$slot'";
+mysqli_query($con,$query4);
 $pointsafter = $_SESSION['points']+5;
+$_SESSION['points']= $pointsafter;
 $query3 = "UPDATE clients SET fidelityPoints = '$pointsafter' WHERE id ='$id'";
 mysqli_query($con,$query3);
 
 
 
-header('Location: historique.php');
+header('Location: ../index.php');
 }
 
 

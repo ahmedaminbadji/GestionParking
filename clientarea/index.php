@@ -47,7 +47,7 @@ if(isset($_SESSION['user'])){
 	<div class="col-lg-12 well">
 	<div class="row">
 	<div align='center'><h3>Profile</h3></div><br>
-		<form action="editprofile.php" method="post"> 
+		<form action="process/editprofile.php" method="post"> 
 			<div class="col-sm-12">
 				<div class="row">
     				<div class="col-sm-6 form-group"> Name :

@@ -1,5 +1,5 @@
 <?php 
-include_once("../config/db.php");
+include_once("../../config/db.php");
 if(isset($_POST['val1'])&& isset($_POST['val2'])){
     $val1 = $_POST['val1'];
     $val2 = $_POST['val2'];

@@ -3,7 +3,7 @@ require_once("../config/db.php");
 session_start();
 if(isset($_SESSION['user'])){
 
-  $user = "ahmed";//$_SESSION['user'];
+  $user = $_SESSION['user'];
   $ticket = "none";
   $carBrand = "none";
   $carModel = "none";
@@ -71,7 +71,7 @@ if(isset($_SESSION['user'])){
     </tr>
     <tr>
       <th scope="row">Car Brand</th>
-      <td><?php echo $carBrand; ?></td>
+      <td id ="carBrand"><?php echo $carBrand; ?></td>
     </tr>
     <tr>
       <th scope="row">Car Model</th>
@@ -97,7 +97,43 @@ if(isset($_SESSION['user'])){
 </table>
 </div>
 </div>
-<div align="center"> <input class="btn btn-success btn-sm" type="submit" value="Exit Park"></div>
+<div align="center"> <button class="btn btn-success btn-sm" id ="exit">Exit Park</button></div>
+
+<script type="text/javascript" language="javascript" src="../static/js/jquery.js"></script>
+<script>
+$(function(){
+$(document).ready(function(){
+    var val = <?php echo json_encode($carBrand); ?>;
+    if(val == "none"){
+     $("#exit").hide();
+    }
+			});
+  $("#exit").click(function(){
+    var ticket = <?php echo json_encode($ticket); ?>;
+    var carBrand = <?php echo json_encode($carBrand); ?>;
+    var carModel = <?php echo json_encode($carModel); ?>;
+    var mat = <?php echo json_encode($mat); ?>;
+    var horraire = <?php echo json_encode($horraire); ?>;
+    var date = <?php echo json_encode($date); ?>;
+    var slot = <?php echo json_encode($slot); ?>;
+    var user = <?php echo json_encode($user); ?>;
+    
+
+    $.post("process/exitpark.php",{ticket: ticket,carBrand: carBrand,carModel: carModel,mat: mat,horraire: horraire,date: date,slot: slot,user: user})
+           .done(function(data){
+            window.alert(data);
+            if(data=="done"){
+              window.alert("Exited , see you next reservation :D");
+              window.location.reload();
+            }else{
+              window.alert("problem");
+            }
+				
+			});
+  
+  });
+	});
+</script>
 </body>
 </html>
 <?php 
