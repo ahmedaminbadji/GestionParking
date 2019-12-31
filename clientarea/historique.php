@@ -13,7 +13,7 @@ $result = mysqli_query($con,$query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HISTORIQUE</title>
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
    
   
@@ -40,16 +40,7 @@ $result = mysqli_query($con,$query);
   </div>
  
 </nav>
-<!--<div class="container">
-<div class="table-responsive">
-<?php// while(mysqli_num_rows($result)>0){
-?>
 
-<?php 
- //}
-?>
-</div>
-</div> -->
 
 
       

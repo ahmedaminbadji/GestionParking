@@ -14,16 +14,16 @@ if(isset($_SESSION['user'])){
 
   $query = "SELECT * FROM reserved WHERE username = '$user'";
   $result = mysqli_query($con,$query);
-  if(mysqli_num_rows($result)==1){
-    $row =  mysqli_fetch_assoc($result);
-    $ticket = $row['ticket'];
-    $carBrand =$row['carBrand'];
-    $carModel = $row['carModel'];
-    $mat = $row['immatriculation'];
-    $horraire = $row['heurreA'];
-    $date = $row['dateReserved'];
-    $slot= $row['slot'];
-  }
+  $n = mysqli_num_rows($result);
+    //$row =  mysqli_fetch_assoc($result);
+    //$ticket = $row['ticket'];
+    //$carBrand =$row['carBrand'];
+    //$carModel = $row['carModel'];
+    //$mat = $row['immatriculation'];
+    //$horraire = $row['heurreA'];
+    //$date = $row['dateReserved'];
+    //$slot= $row['slot'];
+  //}
   
 ?>
 
@@ -60,6 +60,11 @@ if(isset($_SESSION['user'])){
  
 </nav>
 <div class="container">
+  <?php 
+    if($n>0){
+  while($row= mysqli_fetch_assoc($result)){
+
+   ?>
 <div class="table-responsive">
 <table class="table">
 
@@ -67,66 +72,76 @@ if(isset($_SESSION['user'])){
   
     <tr>
       <th scope="row">Ticket</th>
-      <td><?php echo $ticket; ?></td>     
+      <td><?php echo $row['ticket']; ?></td>     
     </tr>
     <tr>
       <th scope="row">Car Brand</th>
-      <td id ="carBrand"><?php echo $carBrand; ?></td>
+      <td id ="carBrand"><?php echo $row['carBrand']; ?></td>
     </tr>
     <tr>
       <th scope="row">Car Model</th>
-      <td><?php echo $carModel; ?></td>
+      <td><?php echo $row['carModel']; ?></td>
     </tr>
     <tr>
       <th scope="row">Immatriculation</th>
-      <td><?php echo $mat; ?></td>
+      <td><?php echo $row['immatriculation']; ?></td>
     </tr>
     <tr>
       <th scope="row">Heurre d'arrivée</th>
-      <td><?php echo $horraire; ?></td>
+      <td><?php echo $row['heurreA']; ?></td>
     </tr>
     <tr>
       <th scope="row">Date de reservation</th>
-      <td><?php echo $date; ?></td>
+      <td><?php echo $row['dateReserved']; ?></td>
     </tr>
     <tr>
       <th scope="row">Slot de park</th>
-      <td><?php echo $slot; ?></td>
+      <td><?php echo $row['slot']; ?></td>
     </tr>
   
 </table>
+<label for="ticketToDelete">Check the car and press exit</label>
+<input type="checkbox"  class="form-control" value="<?php echo $row['ticket'];?>" name="myCheckboxes[]" id="ticketToDelete" >
+<br> 
 </div>
+
+<?php 
+  }
+  ?>
+  <div align="center"> <button class="btn btn-success btn-sm" id="exit">Exit Park</button></div>
+  <?php
+  }else{
+    echo "<h1>No Actual Reservations</h1>";
+  }
+  ?>
+  
 </div>
-<div align="center"> <button class="btn btn-success btn-sm" id ="exit">Exit Park</button></div>
+
 
 <script type="text/javascript" language="javascript" src="../static/js/jquery.js"></script>
 <script>
 $(function(){
-$(document).ready(function(){
-    var val = <?php echo json_encode($carBrand); ?>;
-    if(val == "none"){
-     $("#exit").hide();
-    }
-			});
-  $("#exit").click(function(){
-    var ticket = <?php echo json_encode($ticket); ?>;
-    var carBrand = <?php echo json_encode($carBrand); ?>;
-    var carModel = <?php echo json_encode($carModel); ?>;
-    var mat = <?php echo json_encode($mat); ?>;
-    var horraire = <?php echo json_encode($horraire); ?>;
-    var date = <?php echo json_encode($date); ?>;
-    var slot = <?php echo json_encode($slot); ?>;
-    var user = <?php echo json_encode($user); ?>;
-    
 
-    $.post("process/exitpark.php",{ticket: ticket,carBrand: carBrand,carModel: carModel,mat: mat,horraire: horraire,date: date,slot: slot,user: user})
-           .done(function(data){
-            window.alert(data);
+  $("#exit").click(function(){
+    var user = <?php echo json_encode($user); ?>; 
+    var myCheckboxes = document.querySelectorAll('input[name="myCheckboxes[]"]:checked');
+
+    var vals = [];
+
+for(var x = 0, l = myCheckboxes.length; x < l;  x++)
+{
+    vals.push(myCheckboxes[x].value);
+}
+   
+
+   $.post("process/exitpark.php",{vals: vals,user: user})
+         .done(function(data){
+         
             if(data=="done"){
               window.alert("Exited , see you next reservation :D");
               window.location.reload();
             }else{
-              window.alert("problem");
+              window.alert("No Reservation is checked to exit ..");
             }
 				
 			});
