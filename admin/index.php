@@ -183,7 +183,7 @@ echo"$date1" ;?>
 
         </div>
 
-        <div id="placeLibre">
+        <div id="placeLibre" style="display:none;">
             <div class="container">
                 <h1>Free Slots : </h1> <br>
             <?php $query5 = "SELECT * FROM parkingSlots WHERE reserved = 0";
