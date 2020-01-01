@@ -11,7 +11,8 @@
     </head>
 
     <body>
-        <form >
+        
+        <form id="log" >
             <div class="form-group">
                 <label for="username">Username :</label>
                 <input class="form-control" type="text" name="username" id="username" placeholder="Enter your username" required> 
@@ -33,14 +34,67 @@
                 <br>
                 <span id="login_message"></span>
                 <br>
-                <span style="color : 5cb85c;">Not Registred yet ? <a style="color : white;" href="#">Register Here</a></span>
+                <span style="color : 5cb85c;">Not Registred yet ? <a style="color:white;cursor: pointer;" id="displayRegister" >Register Here</a></span>
             </div>
             </form>
+        
+
+            <div id="register" style ="display :none;">
+                <form >
+                    <div class="form-group">
+                        <label for="username">Username :</label>
+                        <input class="form-control" type="text" name="username" id="usernameR" placeholder="Enter your username" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Name :</label>
+                        <input class="form-control" type="text" name="name" id="name" placeholder="Enter your username" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="username">First Name :</label>
+                        <input class="form-control" type="text" name="fname" id="fname" placeholder="Enter your username" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Email :</label>
+                        <input class="form-control" type="text" name="email" id="email" placeholder="Enter your username" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Phone Number :</label>
+                        <input class="form-control" type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter your username" required> 
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password :</label> 
+                        <input class="form-control" type="password" name="password" id="passwordR" placeholder="Enter your password" minlength="4" required> 
+                    </div>
+                    
+        
+                    <div class="mid">            
+                        <button class="btn btn-success" type="button" id="register_btn">Register</button>
+                        <br>
+                        <span style="color : 5cb85c;">Already Registred ? <a style="color:white;cursor: pointer;" id="displayLogin" >Login</a></span>
+                        
+                    </div>
+                    </form>
+            </div>
 
 
             <script type="text/javascript" language="javascript" src="static/js/jquery.js"></script>
             <script type="text/javascript" language="javascript" src="static/js/bootstrap.min.js"></script>
             <script type="text/javascript" language="javascript" src="static/js/main.js"></script>
+            <script>
+             $(function(){
+                    $("#displayRegister").click(function(){
+                     
+                        $("#log").hide();
+                       $("#register").show();
+                    });
+                    $("#displayLogin").click(function(){
+                     
+                     $("#log").show();
+                    $("#register").hide();
+                 });
+                
+                });
+            </script>
             
     </body>
 </html>

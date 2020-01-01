@@ -19,5 +19,23 @@ $(function(){
                 }
             });
     });
+    $("#register_btn").click(function(){
+        var usernameR = $("#usernameR").val();
+        var passwordR = $("#passwordR").val();
+        var name = $("#name").val();
+        var fname = $("#fname").val();
+        var email = $("#email").val();
+        var phoneNumber = $("#phoneNumber").val();
+        window.alert(usernameR + passwordR);
+       
+        $.post("register.php",{usernameR: usernameR,passwordR: passwordR,name: name,fname: fname,email: email,phoneNumber: phoneNumber})
+            .done(function(data){
+                if(data == "done"){
+                    window.location = "index.html";
+                }else{
+                    window.alert("error");
+                }
+            });
+    });
     
 });
