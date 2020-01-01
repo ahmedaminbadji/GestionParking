@@ -26,7 +26,7 @@ $(function(){
         var fname = $("#fname").val();
         var email = $("#email").val();
         var phoneNumber = $("#phoneNumber").val();
-        window.alert(usernameR + passwordR);
+      
        
         $.post("register.php",{usernameR: usernameR,passwordR: passwordR,name: name,fname: fname,email: email,phoneNumber: phoneNumber})
             .done(function(data){

@@ -52,7 +52,7 @@ if(isset($_SESSION['user'])){
     </ul>
 	<ul class="nav navbar-nav navbar-right">
         
-        <li><a href="#">LOGOUT</a>
+        <li><a href="logout.php">LOGOUT</a>
 
         </li>
       </ul>
