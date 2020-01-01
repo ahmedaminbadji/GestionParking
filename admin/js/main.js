@@ -38,6 +38,22 @@ $(function () {
       $('#slider').html(contentdiv);
       //return false;
   });
+  $("#addGardien").click(function(){
+        
+    var name = $("#nameGardien").val();
+    var fname = $("#fnameGardien").val();
+    var mat = $("#matGardien").val();
+    var salary = $("#salaire").val();
+    
+    $.post("process/addGardien.php",{name: name,fname: fname,mat: mat,salary: salary})
+        .done(function(data){
+            if(data == " done"){
+                window.location.reload();
+            }else{
+                window.alert("error");
+            }
+        });
+});
 });
 
 

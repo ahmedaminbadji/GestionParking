@@ -1,6 +1,10 @@
 <?php 
 include("../config/db.php");
 session_start();
+
+    
+if(!empty($_SESSION['role']) && $_SESSION['role']=="admin"){
+    
 ?>
 
 <html lang="en">
@@ -42,11 +46,11 @@ session_start();
             <i class="fas fa-times"></i>
             </a>
             <a   class="clicky" href="#dashboard">Dashboard</a>
-            <a   class="clicky" href="#etat" >Etat Globale</a>
+            <a   class="clicky" href="#etat" >Global Status</a>
             <a   class="clicky" href="#clients" >Clients</a>
-            <a   class="clicky" href="#placeLibre" >Place Libre</a>
+            <a   class="clicky" href="#placeLibre" >Free Slots</a>
             <a   class="clicky" href="#gestionGardien" >Gestion des Gardiens</a>
-            <a href="deconexion.php" >Deconnexion</a>
+            <a href="logout.php" >Logout</a>
         </div>
         <div id="slider"></div>
         </div>
@@ -62,9 +66,9 @@ session_start();
 <div class="alert alert-success" style="margin-left:50px;background-color:red;padding-top:20px;padding-bottom:20px;">
 <strong>
 <div align="center">
-<i class="fa fa-user fa-fw w3-margin-right"></i> Administrateur</strong>
+<i class="fa fa-user fa-fw w3-margin-right"></i> Administrator</strong>
 <br><br>
-&nbsp; &nbsp; &nbsp;Bienvenue dans votre espace
+&nbsp; &nbsp; &nbsp;Welcome To Your Dashboard
 <br><br> 
 <?php 
 $date=date(" d/m/y") ; 
@@ -81,7 +85,7 @@ echo"$date1" ;?>
   <div id="etat" style="display:none;">
   <br>
         <div class="w3-container w3-quarter" style="background-color:#696969;color:#f7f7f7; height:160px;width:160px;margin-left:20px;margin-bottom:20px;">
-            <h2>Place Reservé</h2>
+            <h2>Reserved slots</h2>
             <div class="w3-right">
                 <?php 
                  $query = "SELECT * FROM reserved WHERE 1";
@@ -94,7 +98,7 @@ echo"$date1" ;?>
            
         </div>
         <div class="w3-container w3-quarter" style="background-color:#696969;color:#f7f7f7; height:160px;width:160px;margin-left:20px;margin-bottom:20px;">
-            <h2>Place Libre</h2>
+            <h2>Free Slots</h2>
             
             <div class="w3-right">
             <?php 
@@ -203,11 +207,106 @@ echo"$date1" ;?>
         </div>
 
 
-        <div></div>
+        <div id="gestionGardien" style="display:none;">
+    
+        <br><br><br>
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>FISRT NAME</th>
+                  <th>MATRICULE</UR</th>
+                  <th>SALARY</th>     
+                  <th>ACTION</th>            
+                </tr>
+              </thead>
+             
+                   <?php 
+                   $query6 = "SELECT * FROM gardiens WHERE 1";
+                   $result6 = mysqli_query($con,$query6);
+                   if(mysqli_num_rows($result6)>0){
+				while($row6 = mysqli_fetch_assoc($result6)) {
+					?>
+              <tbody>
+                <tr>
+                  <td><?php echo $row6["id"];  ?></td>
+                  <td><?php echo $row6["name"]; ?></td>
+                  <td><?php echo $row6["fname"]; ?></td>
+                  <td><?php echo $row6["matricule"];  ?></td>
+                  <td><?php echo $row6["salaire"] . " €"; ?></td>
+                  <td><div align="center"><button onclick="btn_click(<?php echo $row6['id'];?>);" class="btn btn-danger">DELETE</button></div></td>
+                
+
+                </tr>
+              </tbody>
+              <?php 
+					}
+						
+				mysqli_free_result($result6);
+                   }
+			?>
+            </table>
+            
+        </div>
+        </div>
+        <br><br><br><br>
+        <div class="container">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">NAME : </label>
+            <input class="form-control" name="nameGardien" id="nameGardien" type="text" placeholder="Enter Name">
+          </div>
+           <div class="form-group">
+            <label for="exampleInputPassword1"> FIRST NAME : </label>
+            <input class="form-control" name="fnameGardien" id="fnameGardien" type="text" placeholder="Enter First Name">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">MATRICULE  : </label>
+            <input class="form-control" name="matGardien" id="matGardien" type="text" placeholder="Enter Matricule">
+          </div>
+   <div class="form-group">
+            <label for="exampleInputEmail1">SALARY  : </label>
+            <input class="form-control" name="salaire" id="salaire" type="number"  placeholder="Enter Salary">
+          </div>
+         <div align="center">
+          <input type="submit"  class="btn" id="addGardien" value="ADD GARDIEN"></div>
+        </form>
+        </div>
+        </div>
+
+
+<script>
+function btn_click(todelete) {
+ 
+    $.post("process/deleteGardien.php",{id: todelete})
+            .done(function(data){
+                if(data == "done"){
+                    window.location.reload();
+                }else{
+                    window.alert("error");
+                }
+            });
+            
+   
+}
 
 
 
+
+
+</script>
 
 </body>
 </html>
 
+<?php 
+}else{
+    ?>
+    <script>window.location = "../index.html";</script>
+    <?php 
+}
+
+?>
