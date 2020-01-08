@@ -8,10 +8,10 @@ $(function(){
         $.post("login.php",{username: username,password: password,sel1: sel1})
             .done(function(data){
                 if(data == "logged admin"){
-                    window.alert("admin logged");
+                   
                     window.location.href = "/parkManager/admin/";
                 }else if(data == "logged client"){
-                    window.alert("client logged");
+                  
                     window.location.href = "/parkManager/clientarea/";
 
                 }else{

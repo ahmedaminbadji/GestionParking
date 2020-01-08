@@ -37,7 +37,7 @@ mysqli_query($con,$query3);
 
 
 
-header('Location: ../index.php');
+header('Location: ../encours.php');
 }
 
 

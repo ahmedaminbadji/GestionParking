@@ -11,9 +11,9 @@ if(isset($_SESSION['user'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PROFILE</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-   
+	<title>PROFILE</title> 
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	
   
 </head>
 <body>
@@ -28,7 +28,7 @@ if(isset($_SESSION['user'])){
       <li class="active"><a href="index.php">Profile</a></li>
       <li ><a href="reservation.php">Reservation</a></li>
 	  <li><a href="encours.php">Reservation en cours</a></li>
-      <li ><a href="#">Historique de reservations</a></li>
+      <li ><a href="historique.php">Historique de reservations</a></li>
       
     </ul>
 	<ul class="nav navbar-nav navbar-right">
